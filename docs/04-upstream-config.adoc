@@ -35,6 +35,21 @@ Those protocols can be configures with additional security, TLS and authenticati
 - Most of Ethereum nodes support WebSocket connection, in addition to the JSON RPC.
 If it's available on your node, it's suggested to configure both JSON RPC and WebSocket connection
 
+For an Ethereum mainnet upstream (`blockchain: ethereum`),
+https://chain.love[Chain.Love] provides a directory of API plans that can help
+shortlist remote providers. Check each plan's network and supported methods
+before replacing the JSON RPC or WebSocket URL in an upstream connection.
+Configure the WebSocket URL separately when using subscriptions.
+
+Match the plan's historical state coverage to the calls your clients make.
+An `archive: true` label helps select an upstream, but does not add archive
+capabilities to the provider's endpoint.
+
+Use the <<request-limits,request limits>> to fit client traffic within the
+provider's budget, leaving room for Dshackle's own validation and head-polling
+requests: those background requests are not covered by the upstream limits.
+A directory listing does not verify the plan's capacity for this workload.
+
 ==== Bitcoin
 
 - Bitcoind needs to be configured to index/track addresses that you're going to request.
